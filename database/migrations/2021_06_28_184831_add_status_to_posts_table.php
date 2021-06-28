@@ -13,9 +13,9 @@ class AddStatusToPostsTable extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->integer('status');
-        });
+//        Schema::table('posts', function (Blueprint $table) {
+//            $table->integer('status');
+//        });
     }
 
     /**
