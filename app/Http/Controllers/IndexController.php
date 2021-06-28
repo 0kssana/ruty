@@ -4,6 +4,8 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -24,5 +26,28 @@ class IndexController extends Controller
         Post::find($postId)->increment('views');
         $detail=Post::find($postId);
         return view('detail',['detail'=>$detail]);
+    }
+    // All Categories
+    function all_category(){
+        $categories=Category::orderBy('id','desc')->paginate(5);
+        return view('categories',['categories'=>$categories]);
+    }
+    // All posts according to the category
+    function category(Request $request,$cat_slug,$cat_id){
+        $category=Category::find($cat_id);
+        $posts=Post::where('cat_id',$cat_id)->orderBy('id','desc')->paginate(2);
+        return view('category',['posts'=>$posts,'category'=>$category]);
+    }
+    // Save Comment
+    function save_comment(Request $request,$slug,$id){
+        $request->validate([
+            'comment'=>'required'
+        ]);
+        $data=new Comment;
+        $data->user_id=$request->user()->id;
+        $data->post_id=$id;
+        $data->comment=$request->comment;
+        $data->save();
+        return redirect('detail/'.$slug.'/'.$id)->with('success','Comment has been submitted.');
     }
 }
