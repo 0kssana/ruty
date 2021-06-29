@@ -13,9 +13,9 @@ class AddVotesToPosts extends Migration
      */
     public function up()
     {
-//        Schema::table('posts', function (Blueprint $table) {
-//            $table->integer('views');
-//        });
+        Schema::table('posts', function (Blueprint $table) {
+            $table->integer('views');
+        });
     }
 
     /**

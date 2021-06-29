@@ -29,30 +29,19 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+
         }
     },
-    "scripts": {
-        "post-autoload-dump": [
-            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
-        ],
-        "post-root-package-install": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-        ],
-        "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
-        ]
-    },
+    "scripts": {},
     "extra": {
         "laravel": {
             "dont-discover": []
         }
     },
     "config": {
-        "optimize-autoloader": true,
+        "optimize-autoloader": false,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": false
     },
     "minimum-stability": "dev",
     "prefer-stable": true
